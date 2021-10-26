@@ -8,6 +8,11 @@ public class RecipeController {
 
     Recipe oneRecipe = new Recipe();
 
+    @RequestMapping("/hello")
+    public String hello() {
+        return "hi";
+    }
+
     @PostMapping("/api/recipe")
     public void postRecipe(@RequestBody Recipe recipe) {
         oneRecipe = recipe;
