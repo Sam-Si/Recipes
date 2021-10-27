@@ -7,9 +7,9 @@
 <p>Don't forget to keep the functionality from the previous stages. This is what your program can do:</p>
 
 <ul>
-	<li><code class="language-json">POST /api/recipe/new</code> receives a recipe as a JSON object and returns a JSON object with one <code class="language-json">id</code> field;</li>
-	<li><code class="language-json">GET /api/recipe/{id}</code> returns a recipe with a specified <code class="language-json">id</code> as a JSON object;</li>
-	<li><code class="language-json">DELETE /api/recipe/{id}</code> deletes a recipe with a specified <code class="language-json">id</code>.</li>
+	<li><code class="language-json">POST /api/recipe/new</code> receives a recipe as a JSON object and returns a JSON object with one <code class="language-json">uniqueIdentifier</code> field;</li>
+	<li><code class="language-json">GET /api/recipe/{uniqueIdentifier}</code> returns a recipe with a specified <code class="language-json">uniqueIdentifier</code> as a JSON object;</li>
+	<li><code class="language-json">DELETE /api/recipe/{uniqueIdentifier}</code> deletes a recipe with a specified <code class="language-json">uniqueIdentifier</code>.</li>
 </ul>
 
 <p>In this stage, the recipe structure should contain two new fields:</p>
@@ -22,7 +22,7 @@
 <p>Also, the service should support the following endpoints:</p>
 
 <ul>
-	<li><code class="language-json">PUT /api/recipe/{id}</code> receives a recipe as a JSON object and updates a recipe with a specified <code class="language-json">id</code>. Also, update the <code class="language-json">date</code> field too. The server should return the <code class="language-json">204 (No Content)</code> status code. If a recipe with a specified <code class="language-json">id</code> does not exist, the server should return <code class="language-json">404 (Not found)</code>. The server should respond with <code class="language-json">400 (Bad Request)</code> if a recipe doesn't follow the restrictions indicated above (all fields are required, string fields can't be blank, arrays should have at least one item);</li>
+	<li><code class="language-json">PUT /api/recipe/{uniqueIdentifier}</code> receives a recipe as a JSON object and updates a recipe with a specified <code class="language-json">uniqueIdentifier</code>. Also, update the <code class="language-json">date</code> field too. The server should return the <code class="language-json">204 (No Content)</code> status code. If a recipe with a specified <code class="language-json">uniqueIdentifier</code> does not exist, the server should return <code class="language-json">404 (Not found)</code>. The server should respond with <code class="language-json">400 (Bad Request)</code> if a recipe doesn't follow the restrictions indicated above (all fields are required, string fields can't be blank, arrays should have at least one item);</li>
 	<li><code class="language-json">GET /api/recipe/search</code> takes one of the two mutually exclusive query parameters:
 	<ol>
 		<li><code class="language-json">category</code> – if this parameter is specified, it returns a JSON array of all recipes of the specified category. Search is case-insensitive, sort the recipes by date (newer first);</li>
@@ -50,7 +50,7 @@
 <p>Response:</p>
 
 <pre><code class="language-json">{
-   "id": 1
+   "uniqueIdentifier": 1
 }</code></pre>
 
 <p>Further <code class="language-json">GET /api/recipe/1</code> response:</p>
@@ -69,7 +69,7 @@
         onclick="getElementById('hint-4964').style.display='inline'">
         Hint
       </button>
-      <div id="hint-4964" style="display:none;">The <code class="language-json">date</code> field is present in the response only.</div></p>
+      <div uniqueIdentifier="hint-4964" style="display:none;">The <code class="language-json">date</code> field is present in the response only.</div></p>
 
 <p><strong>Example 2</strong>: <code class="language-json">PUT /api/recipe/1</code> request</p>
 
@@ -170,4 +170,4 @@
         onclick="getElementById('hint-7811').style.display='inline'">
         Hint
       </button>
-      <div id="hint-7811" style="display:none;">Search is case-insensitive, the recipes are sorted by date.</div></p>
+      <div uniqueIdentifier="hint-7811" style="display:none;">Search is case-insensitive, the recipes are sorted by date.</div></p>

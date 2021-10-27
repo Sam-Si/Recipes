@@ -288,42 +288,12 @@ files:
         }
     }
   learner_created: true
+- name: src/recipes/models/UniqueIdentifier.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/180/stages/918/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #2
-
-    POST /api/recipe/new should respond with status code 200, responded: 404
-
-    Response body:
-    {&quot;timestamp&quot;:&quot;2021-10-26T11:53:45.612+00:00&quot;,&quot;status&quot;:404,&quot;error&quot;:&quot;Not Found&quot;,&quot;message&quot;:&quot;&quot;,&quot;path&quot;:&quot;/api/recipe/new&quot;}
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    .   ____          _            __ _ _
-     /\\ / ___&#39;_ __ _ _(_)_ __  __ _ \ \ \ \
-    ( ( )\___ | &#39;_ | &#39;_| | &#39;_ \/ _` | \ \ \ \
-     \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-      &#39;  |____| .__|_| |_|_| |_\__, | / / / /
-     =========|_|==============|___/=/_/_/_/
-     :: Spring Boot ::        (v2.3.1.RELEASE)
-
-    2021-10-26 17:23:41.748  INFO 4636 --- [    Test worker] recipes.RecipesApplication               : Starting RecipesApplication on HOME-PC with PID 4636 (started by samsi in C:\Users\samsi\IdeaProjects\Recipes\Recipes\task)
-    2021-10-26 17:23:41.751  INFO 4636 --- [    Test worker] recipes.RecipesApplication               : No active profile set, falling back to default profiles: default
-    2021-10-26 17:23:43.817  INFO 4636 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8881 (http)
-    2021-10-26 17:23:43.833  INFO 4636 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-    2021-10-26 17:23:43.834  INFO 4636 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.36]
-    2021-10-26 17:23:43.975  INFO 4636 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-    2021-10-26 17:23:43.975  INFO 4636 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2131 ms
-    2021-10-26 17:23:44.376  INFO 4636 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService &#39;applicationTaskExecutor&#39;
-    2021-10-26 17:23:44.750  INFO 4636 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path &#39;/actuator&#39;
-    2021-10-26 17:23:44.809  INFO 4636 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8881 (http) with context path &#39;&#39;
-    2021-10-26 17:23:44.826  INFO 4636 --- [    Test worker] recipes.RecipesApplication               : Started RecipesApplication in 3.663 seconds (JVM running for 4.773)
-    2021-10-26 17:23:45.321  INFO 4636 --- [nio-8881-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet &#39;dispatcherServlet&#39;
-    2021-10-26 17:23:45.322  INFO 4636 --- [nio-8881-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet &#39;dispatcherServlet&#39;
-    2021-10-26 17:23:45.337  INFO 4636 --- [nio-8881-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
-  time: Tue, 26 Oct 2021 11:53:46 UTC
-record: -1
+  message: Congratulations!
+  time: Wed, 27 Oct 2021 18:14:15 UTC
+record: 2

@@ -8,12 +8,12 @@
   <p>This is the <code class="language-java">Account</code> class. It has three fields and one constructor.</p> 
   <pre><code class="language-java">class Account {
 
-    private long id;
+    private long uniqueIdentifier;
     private String code;
     private Long balance;
 
-    public Account(long id, String code, Long balance) {
-        this.id = id;
+    public Account(long uniqueIdentifier, String code, Long balance) {
+        this.uniqueIdentifier = uniqueIdentifier;
         this.code = code;
         this.balance = balance;
     }
@@ -30,12 +30,12 @@ String accString = account.toString(); // org.demo.example.Account@27082746</cod
   <p>Here is another version of the <code class="language-java">Account</code> class where we've overridden the <code class="language-java">toString()</code> method:</p> 
   <pre><code class="language-java">class Account {
 
-    private long id;
+    private long uniqueIdentifier;
     private String code;
     private Long balance;
 
-    public Account(long id, String code, Long balance) {
-        this.id = id;
+    public Account(long uniqueIdentifier, String code, Long balance) {
+        this.uniqueIdentifier = uniqueIdentifier;
         this.code = code;
         this.balance = balance;
     }
@@ -44,13 +44,13 @@ String accString = account.toString(); // org.demo.example.Account@27082746</cod
 
     @Override
     public String toString() {
-        return "Account{id=" + id + ",code=" + code + ",balance=" + balance + "}";
+        return "Account{uniqueIdentifier=" + uniqueIdentifier + ",code=" + code + ",balance=" + balance + "}";
     }
 }</code></pre> 
   <p>Let's create an instance of this class and get the string representation of the instance: </p> 
   <pre><code class="language-java">Account account = new Account(1121, "111-123", 400_000L);
 
-String accString = account.toString(); // Account{id=1121,code=111-123,balance=400000}</code></pre> 
+String accString = account.toString(); // Account{uniqueIdentifier=1121,code=111-123,balance=400000}</code></pre>
   <p>Compared to the default string representation, this one gives us more information about the object and its attributes.</p> 
   <p>String representations are very useful for debugging and logging. You can use the <code class="language-java">toString()</code> method to display a string representation of an object in the standard output:</p> 
   <pre><code class="language-java">// option 1
