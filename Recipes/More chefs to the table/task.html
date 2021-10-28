@@ -31,7 +31,7 @@ By default, Spring Boot Security enables the basic authentication, adds its own 
         onclick="getElementById('hint-3861').style.display='inline'">
         Hint
       </button>
-      <div uniqueIdentifier="hint-3861" style="display:none;">In this stage, HTTP Basic Authentication should be enabled. Spring Boot Security enables basic auth when we add the dependency. But when we override the <code class="language-java">configure(HttpSecurity http)</code> method, we override this default configuration. If we want to use basic auth, we need to enable it explicitly using the <code class="language-java">HttpSecurity</code> instance and its method.</div></p>
+      <div id="hint-3861" style="display:none;">In this stage, HTTP Basic Authentication should be enabled. Spring Boot Security enables basic auth when we add the dependency. But when we override the <code class="language-java">configure(HttpSecurity http)</code> method, we override this default configuration. If we want to use basic auth, we need to enable it explicitly using the <code class="language-java">HttpSecurity</code> instance and its method.</div></p>
 
 <p>Here are the links about Spring Security that will help to complete this stage:</p>
 
@@ -98,7 +98,7 @@ By default, Spring Boot Security enables the basic authentication, adds its own 
 <p>Response:</p>
 
 <pre><code class="language-json">{
-   "uniqueIdentifier": 1
+   "id": 1
 }</code></pre>
 
 <p>Further <code class="language-java">PUT /api/recipe/1</code> request with basic authentication; email (login): Cook_Programmer@somewhere.com, password: RecipeInBinary</p>
