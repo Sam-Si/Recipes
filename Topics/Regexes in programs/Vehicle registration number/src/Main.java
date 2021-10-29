@@ -7,7 +7,7 @@ class Main {
         String regNum = scanner.nextLine(); // a valid or invalid registration number
 
         /* write your code here */
-        String regex = "[ABEKMHOPCTYX]{1}[0-9]{3}[ABEKMHOPCTYX]{2}";
+        String regex = "[ABEKMHOPCTYX][0-9]{3}[ABEKMHOPCTYX]{2}";
 
         if (regNum.matches(regex)) {
             System.out.println("true");
