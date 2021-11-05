@@ -7,7 +7,6 @@ class Operator {
             Function<? super T, ? extends U> ifTrue,
             Function<? super T, ? extends U> ifFalse) {
 
-        return null; // your implementation here
-
+        return t -> condition.test(t) ? ifTrue.apply(t) : ifFalse.apply(t);
     }
 }
