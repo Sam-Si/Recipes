@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/529086/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Fri, 05 Nov 2021 15:17:24 UTC
+update_date: Tue, 09 Nov 2021 19:22:44 UTC
 stages:
 - id: 917
   step: 13088
@@ -35,7 +35,7 @@ topics:
   - title: Computer algorithms
     theory_id: 16547
   - title: The big O notation
-    theory_id: 13991
+    theory_id: 16699
   - title: Data structures
     theory_id: 5161
   - title: World Wide Web
@@ -222,8 +222,6 @@ topics:
     theory_id: 3589
   - title: Getters and setters
     theory_id: 3599
-  - title: Comparable
-    theory_id: 14456
   - title: Inheritance
     theory_id: 3583
   - title: The keyword super
@@ -344,6 +342,8 @@ topics:
     theory_id: 15269
   - title: Custom User Store
     theory_id: 16191
+  - title: Getting authenticated user details
+    theory_id: 16710
   - title: Authentication and Authorization
     theory_id: 14219
   - title: Builder

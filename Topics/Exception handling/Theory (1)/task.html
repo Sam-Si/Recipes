@@ -37,9 +37,9 @@ public class FlightController {
         flightInfoList.add(new FlightInfo("Berlin Schönefeld", "Tenerife", "15"));
     }
 
-    @GetMapping("flights/{uniqueIdentifier}")
-    public static FlightInfo getFlightInfo(@PathVariable int uniqueIdentifier) {
-        return flightInfoList.get(uniqueIdentifier);
+    @GetMapping("flights/{id}")
+    public static FlightInfo getFlightInfo(@PathVariable int id) {
+        return flightInfoList.get(id);
     }
 
 }</code></pre> 
@@ -57,10 +57,10 @@ ResponseStatusException(
   <p>We have created an instance providing <code class="language-json">HttpStatus</code> and, optionally, the reason and cause. The reason is a simple message that explains the exception. The cause is a nested exception. </p> 
   <p>So, what <code class="language-json">HttpStatus</code> types are there? The most common are <code class="language-json">200 OK</code>, <code class="language-json">404 NOT_FOUND</code>, <code class="language-json">400 BAD_REQUEST</code>, <code class="language-json">403 FORBIDDEN</code>, and <code class="language-json">500 INTERNAL_SERVER_ERROR</code>. </p> 
   <p>Let's change our <code class="language-json">getFlightInfo</code> method and write a code that generates an instance of <code class="language-json">ResponseStatusException</code>. Let's say users are looking for some information about a flight from the Berlin Schönefeld airport, but the airport is closed for maintenance. In this situation, we should return <code class="language-json">ResponseStatusException</code> with <code class="language-json">BAD_REQUEST</code> status and reason message:</p> 
-  <pre><code class="language-java">@GetMapping("flights/{uniqueIdentifier}")
-public static FlightInfo getFlightInfo(@PathVariable int uniqueIdentifier) {
-    FlightInfo flightInfo = flightInfoList.get(uniqueIdentifier);
-    if (Objects.equals(flightInfo.from(), "Berlin Schönefeld")) {
+  <pre><code class="language-java">@GetMapping("flights/{id}")
+public static FlightInfo getFlightInfo(@PathVariable int id) {
+    FlightInfo flightInfo = flightInfoList.get(id);
+    if (Objects.equals(flightInfo.getFrom(), "Berlin Schönefeld")) {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
                 "Berlin Schönefeld is closed for service today");
     }
@@ -96,14 +96,14 @@ class FlightNotFoundException extends RuntimeException {
 }</code></pre> 
   <p>Now, we can throw this exception in the same way as <code class="language-json">ResponseStatusException</code>. The status will be set automatically.</p> 
   <p>For example, in the flight controller:</p> 
-  <pre><code class="language-java">@GetMapping("flights/{uniqueIdentifier}")
-public FlightInfo getFlightInfo(@PathVariable int uniqueIdentifier) {
-    if (uniqueIdentifier &gt; flightInfoList.size()) {
-        throw new FlightNotFoundException("Flight not found for uniqueIdentifier =" + uniqueIdentifier);
+  <pre><code class="language-java">@GetMapping("flights/{id}")
+public FlightInfo getFlightInfo(@PathVariable int id) {
+    if (id &gt; flightInfoList.size()) {
+        throw new FlightNotFoundException("Flight not found for id =" + id);
     }
-    return flightInfoList.get(uniqueIdentifier);
+    return flightInfoList.get(id);
 }</code></pre> 
-  <p>If we test this exception with a nonexistent <code class="language-json">uniqueIdentifier=1111</code>, we get a response with the new status code <code class="language-json">400</code>.</p>
+  <p>If we test this exception with a nonexistent <code class="language-json">id=1111</code>, we get a response with the new status code <code class="language-json">400</code>.</p> 
   <p style="text-align: center;"><img alt="" height="409" src="https://ucarecdn.com/c8d7200b-4d5c-4bcf-b5a5-8a0a8cf60f54/" width="682"></p> 
   <p>The main advantage is that we can create our own specific exceptions and keep our code more readable.</p> 
   <p>On the other hand, custom exceptions require implementing additional classes.</p> 

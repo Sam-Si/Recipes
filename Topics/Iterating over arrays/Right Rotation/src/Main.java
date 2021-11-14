@@ -8,7 +8,7 @@ class Main {
         // put your code here
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
-        int rotation = scanner.nextInt();
+        Integer rotation = scanner.nextInt();
 
         String[] numbers = s.split("\\s");
         List<Integer> nums = new ArrayList<>();
