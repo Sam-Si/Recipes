@@ -4,8 +4,6 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 }
 
-sourceCompatibility = 11
-
 repositories {
     mavenCentral()
 }
@@ -13,7 +11,15 @@ repositories {
 sourceSets.main.resources.srcDirs = ["resources"]
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.6'
+    implementation 'org.jetbrains:annotations:22.0.0'
+    runtimeOnly 'com.h2database:h2:1.4.200'
+    testImplementation('org.springframework.boot:spring-boot-starter-test:2.5.6') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }

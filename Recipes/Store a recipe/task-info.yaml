@@ -300,12 +300,39 @@ files:
         }
     }
   learner_created: false
-- name: src/recipes/model/Recipe.java
+- name: src/recipes/service/request/AddRecipeRequest.java
   visible: true
   learner_created: true
 - name: src/recipes/controller/RecipeController.java
   visible: true
   learner_created: true
+- name: src/recipes/service/RecipeService.java
+  visible: true
+  learner_created: true
+- name: src/recipes/domain/RecipeEntity.java
+  visible: true
+  learner_created: true
+- name: src/recipes/service/response/AddRecipeResponse.java
+  visible: true
+  learner_created: true
+- name: src/recipes/service/response/GetRecipeResponse.java
+  visible: true
+  learner_created: true
+- name: src/recipes/service/request/GetRecipeRequest.java
+  visible: true
+  learner_created: true
+- name: src/recipes/service/exception/RecipeNotFoundException.java
+  visible: true
+  learner_created: true
+- name: src/recipes/controller/RecipeConfiguration.java
+  visible: true
+  learner_created: true
+- name: src/recipes/data/RecipeRepository.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/180/stages/919/implement#comment
-status: Failed
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 14 Nov 2021 20:54:05 UTC
+record: 3

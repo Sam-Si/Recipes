@@ -21,14 +21,5 @@ public class Controller {
     ));
 
     // add your code below this line
-    @DeleteMapping("/users/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        if (users.containsKey(id)) {
-            users.remove(id);
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-    }
 
 }

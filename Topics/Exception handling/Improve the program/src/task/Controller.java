@@ -17,9 +17,6 @@ public class Controller {
 
     @GetMapping("/items/{id}")
     String getItem(@PathVariable long id) {
-        if (!items.containsKey(id)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
         return items.getOrDefault(id, "Item wasn't found");
     }
 }

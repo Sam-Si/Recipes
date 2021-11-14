@@ -627,6 +627,263 @@ files:
         }
     }
   learner_created: false
+- name: src/recipes/service/request/AddRecipeRequest.java
+  visible: true
+  text: |-
+    package recipes.service.request;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Builder;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.NotEmpty;
+    import java.util.List;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class AddRecipeRequest {
+        @NotBlank
+        private String name;
+        @NotEmpty
+        private List<@NotBlank String> ingredients;
+        @NotEmpty
+        private List<@NotBlank String> directions;
+        @NotBlank
+        private String description;
+    }
+  learner_created: true
+- name: src/recipes/controller/RecipeController.java
+  visible: true
+  text: |-
+    package recipes.controller;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.web.bind.annotation.*;
+    import recipes.domain.RecipeEntity;
+    import recipes.service.RecipeService;
+    import recipes.service.request.AddRecipeRequest;
+    import recipes.service.response.AddRecipeResponse;
+    import recipes.service.response.GetRecipeResponse;
+
+    import javax.validation.Valid;
+
+    @RestController
+    public class RecipeController {
+        @Autowired
+        private RecipeService service;
+
+        @PostMapping("/api/recipe/new")
+        public AddRecipeResponse addRecipe(@Valid @RequestBody AddRecipeRequest request) {
+            System.out.println(request.toString());
+            return new AddRecipeResponse().builder()
+                    .id(service.addRecipe(new RecipeEntity().builder()
+                            .name(request.getName())
+                            .description(request.getDescription())
+                            .ingredients(request.getIngredients()).directions(request.getDirections())
+                            .build()))
+                    .build();
+        }
+
+        @GetMapping("/api/recipe/{id}")
+        public GetRecipeResponse getRecipe(@PathVariable Long id) {
+            RecipeEntity recipe = service.getRecipe(id);
+            return new GetRecipeResponse().builder()
+                    .name(recipe.getName())
+                    .description(recipe.getDescription())
+                    .ingredients(recipe.getIngredients())
+                    .directions(recipe.getDirections())
+                    .build();
+        }
+
+        @DeleteMapping("api/recipe/{id}")
+        @ResponseStatus(value = HttpStatus.NO_CONTENT)
+        public void deleteRecipe(@PathVariable Long id) {
+            service.deleteRecipe(id);
+        }
+    }
+  learner_created: true
+- name: src/recipes/service/RecipeService.java
+  visible: true
+  text: |-
+    package recipes.service;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import recipes.domain.RecipeEntity;
+    import recipes.data.RecipeRepository;
+    import recipes.service.exception.RecipeNotFoundException;
+
+    public class RecipeService {
+
+        @Autowired
+        private RecipeRepository repo;
+
+        public Long addRecipe(RecipeEntity recipe) {
+            return repo.save(recipe).getId();
+        }
+
+        public RecipeEntity getRecipe(Long id) {
+            return repo.findById(id).orElseThrow(() -> new RecipeNotFoundException(HttpStatus.NOT_FOUND));
+        }
+
+        public void deleteRecipe(Long id) {
+            if (!repo.existsById(id)) {
+                throw new RecipeNotFoundException(HttpStatus.NOT_FOUND);
+            }
+            repo.deleteById(id);
+        }
+    }
+  learner_created: true
+- name: src/recipes/service/response/GetRecipeResponse.java
+  visible: true
+  text: |-
+    package recipes.service.response;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Builder;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import java.util.List;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class GetRecipeResponse {
+        private String name;
+        private List<String> ingredients;
+        private List<String> directions;
+        private String description;
+    }
+  learner_created: true
+- name: src/recipes/service/request/GetRecipeRequest.java
+  visible: true
+  text: |-
+    package recipes.service.request;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Builder;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class GetRecipeRequest {
+        private Long id;
+    }
+  learner_created: true
+- name: src/recipes/service/response/AddRecipeResponse.java
+  visible: true
+  text: |-
+    package recipes.service.response;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Builder;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class AddRecipeResponse {
+        private Long id;
+    }
+  learner_created: true
+- name: src/recipes/domain/RecipeEntity.java
+  visible: true
+  text: |-
+    package recipes.domain;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Builder;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.NotEmpty;
+    import java.util.List;
+
+    @Data
+    @Builder
+    @Entity
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class RecipeEntity {
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Long id;
+
+        @NotBlank
+        private String name;
+
+        @NotBlank
+        private String description;
+
+        @ElementCollection
+        @NotEmpty
+        private List<@NotBlank String> ingredients;
+
+        @ElementCollection
+        @NotEmpty
+        private List<@NotBlank String> directions;
+    }
+  learner_created: true
+- name: src/recipes/service/exception/RecipeNotFoundException.java
+  visible: true
+  text: |-
+    package recipes.service.exception;
+
+    import org.springframework.http.HttpStatus;
+    import org.springframework.web.server.ResponseStatusException;
+
+    public class RecipeNotFoundException extends ResponseStatusException {
+        public RecipeNotFoundException(HttpStatus status) {
+            super(status);
+        }
+    }
+  learner_created: true
+- name: src/recipes/controller/RecipeConfiguration.java
+  visible: true
+  text: |-
+    package recipes.controller;
+
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import recipes.service.RecipeService;
+
+    @Configuration
+    public class RecipeConfiguration {
+
+        @Bean
+        public RecipeService recipeService() {
+            return new RecipeService();
+        }
+    }
+  learner_created: true
+- name: src/recipes/data/RecipeRepository.java
+  visible: true
+  text: |-
+    package recipes.data;
+
+    import org.springframework.data.repository.CrudRepository;
+    import org.springframework.stereotype.Repository;
+    import recipes.domain.RecipeEntity;
+
+
+    @Repository
+    public interface RecipeRepository extends CrudRepository<RecipeEntity, Long> {
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/180/stages/920/implement#comment
 status: Unchecked
 record: -1
